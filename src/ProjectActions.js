@@ -16,9 +16,7 @@ class ProjectActions extends Component {
 
     componentWillMount() {
 
-        axios.get(`http://127.0.0.1:8000/projectactions/${this.state.id}`).then((response) => {
-            console.log(response)
-
+        axios.get(`https://vggtestapi.herokuapp.com/projectactions/${this.state.id}`).then((response) => {
             this.setState({
 
                 actions: response.data

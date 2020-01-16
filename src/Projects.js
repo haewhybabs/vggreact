@@ -13,7 +13,7 @@ class Projects extends Component {
 
     componentWillMount() {
 
-        axios.get('http://127.0.0.1:8000/projects').then((response) => {
+        axios.get('https://vggtestapi.herokuapp.com/projects').then((response) => {
             console.log(response)
 
             this.setState({
