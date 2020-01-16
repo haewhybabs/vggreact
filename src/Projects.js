@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Table, Button } from 'reactstrap';
+import { Table,Button,
+  Card,
+  CardText, 
+  CardHeader,
+  CardBody,
+   } from 'reactstrap';
+
 import { Link } from 'react-router-dom';
 
 
@@ -14,8 +20,7 @@ class Projects extends Component {
     componentWillMount() {
 
         axios.get('https://vggtestapi.herokuapp.com/projects').then((response) => {
-            console.log(response)
-
+            
             this.setState({
 
                 projects: response.data
@@ -25,8 +30,9 @@ class Projects extends Component {
         })
     }
     render() {
-
+        let x=0;
         let projects = this.state.projects.map((project) => {
+            x=x+1;
             return (
                 <tr key = { project.id } >
                     <td > { project.id } </td> 
@@ -48,19 +54,31 @@ class Projects extends Component {
         })
 
         return (
+
+            
+            
             <div className = "App container">
-                <Table>
-                    <thead>
-                        <tr>
-                            <th> # </th> 
-                            <th> Project Name </th> 
-                            <th> Description </th> 
-                            <th> Status </th> 
-                            <th>Actions</th> 
-                        </tr>
-                    </thead> 
-                    <tbody > { projects } </tbody> 
-                </Table>
+
+            
+                <Card>
+                    <CardHeader>Project</CardHeader>
+                    <CardBody>
+                        <CardText>
+                            <Table>
+                                <thead>
+                                    <tr>
+                                        <th> # </th> 
+                                        <th> Project Name </th> 
+                                        <th> Description </th> 
+                                        <th> Status </th> 
+                                        <th>Actions</th> 
+                                    </tr>
+                                </thead> 
+                                <tbody > { projects } </tbody> 
+                            </Table>
+                        </CardText>
+                    </CardBody>   
+                </Card>
             </div>
 
         );
@@ -68,3 +86,5 @@ class Projects extends Component {
 }
 
 export default Projects;
+
+
