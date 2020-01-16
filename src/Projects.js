@@ -16,7 +16,6 @@ class Projects extends Component {
         axios.get('http://127.0.0.1:8000/projects').then((response) => {
             console.log(response)
 
-
             this.setState({
 
                 projects: response.data
@@ -29,55 +28,40 @@ class Projects extends Component {
 
         let projects = this.state.projects.map((project) => {
             return (
-
-                <
-                tr key = { project.id } >
-                <
-                td > { project.id } < /td> <
-                td > { project.name } < /td> <
-                td > { project.description } < /td> <
-                td > { project.completed } < /td> <
-                td >
-
-                <
-                Link to = { `/projectDetails/${project.id}` } >
-                <
-                Button color = "primary"
-                size = "sm" > View < /Button> <
-                /Link>
-
-                <
-                /td> <
-                /tr>
+                <tr key = { project.id } >
+                    <td > { project.id } </td> 
+                    <td > 
+                        <Link to = { `/projectactions/${project.id}` }>
+                            {project.name} 
+                        </Link>
+                    </td> 
+                    <td > { project.description } </td> 
+                    {project.completed===false ?<td>Not Yet Completed</td>: <td>Completed</td>}
+                    <td>
+                        <Link to = { `/projectactions/${project.id}` }>
+                            <Button color = "primary" size = "sm"> View </Button> 
+                        </Link>
+                    </td> 
+                </tr >
 
             )
         })
 
         return (
-
-            <
-            div className = "App container" >
-
-
-            <
-            Table >
-            <
-            thead >
-            <
-            tr >
-            <
-            th > # < /th> <
-            th > Project Name < /th> <
-            th > Description < /th> <
-            th > Status < /th> <
-            th > Details < /th> <
-            /tr> <
-            /thead> <
-            tbody > { projects } < /tbody> <
-            /Table>
-
-            <
-            /div>
+            <div className = "App container">
+                <Table>
+                    <thead>
+                        <tr>
+                            <th> # </th> 
+                            <th> Project Name </th> 
+                            <th> Description </th> 
+                            <th> Status </th> 
+                            <th>Actions</th> 
+                        </tr>
+                    </thead> 
+                    <tbody > { projects } </tbody> 
+                </Table>
+            </div>
 
         );
     }
